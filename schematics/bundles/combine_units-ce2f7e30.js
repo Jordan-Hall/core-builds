@@ -1,6 +1,6 @@
 'use strict';
 /**
- * @license Angular v19.1.0-next.0+sha-dca1483-with-local-changes
+ * @license Angular v19.1.0-next.0+sha-899f711-with-local-changes
  * (c) 2010-2024 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -11,7 +11,7 @@ var posixPath = require('node:path/posix');
 var os = require('os');
 var ts = require('typescript');
 var checker = require('./checker-5a528c82.js');
-var program = require('./program-bdd1faed.js');
+var program = require('./program-786d15de.js');
 require('path');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
@@ -29700,7 +29700,7 @@ function toKebabCase(str) {
  * @description
  * Entry point for all public APIs of the compiler package.
  */
-new Version('19.1.0-next.0+sha-dca1483-with-local-changes');
+new Version('19.1.0-next.0+sha-899f711-with-local-changes');
 
 var _VisitorMode;
 (function (_VisitorMode) {
