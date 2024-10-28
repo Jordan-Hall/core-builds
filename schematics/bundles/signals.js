@@ -14,7 +14,7 @@ var signalInputMigration = require('./signal-input-migration.js');
 var outputMigration = require('./output-migration.js');
 require('./project_tsconfig_paths-e9ccccbf.js');
 require('@angular-devkit/core');
-require('./combine_units-6b541eeb.js');
+require('./combine_units-cca970f1.js');
 require('node:path/posix');
 require('os');
 require('typescript');
@@ -23,9 +23,9 @@ require('fs');
 require('module');
 require('path');
 require('url');
-require('./program-3605d265.js');
+require('./program-a3931285.js');
 require('assert');
-require('./migrate_ts_type_references-426ff7be.js');
+require('./migrate_ts_type_references-c3058f3f.js');
 require('./leading_space-d190b83b.js');
 
 function migrate(options) {

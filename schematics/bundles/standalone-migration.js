@@ -12,7 +12,7 @@ var schematics = require('@angular-devkit/schematics');
 require('os');
 var ts = require('typescript');
 var checker = require('./checker-5a528c82.js');
-var program = require('./program-3605d265.js');
+var program = require('./program-a3931285.js');
 var p = require('path');
 var fs = require('fs');
 var compiler_host = require('./compiler_host-af8cf361.js');

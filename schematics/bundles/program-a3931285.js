@@ -6664,6 +6664,7 @@ const QUERY_TYPES = new Set(queryDecoratorNames);
 function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, evaluator, refEmitter, referencesRegistry, isCore, annotateForClosureCompiler, compilationMode, defaultSelector, strictStandalone) {
     let directive;
     let meta;
+    debugger;
     if (decorator.args === null || decorator.args.length === 0) {
         directive = new Map();
     }
