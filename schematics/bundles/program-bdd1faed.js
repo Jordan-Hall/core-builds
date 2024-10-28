@@ -6715,7 +6715,7 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
     // Parse the selector.
     let selector = defaultSelector;
     // First ensure the decorator
-    if (!directive.has('selector') && decorator.import?.name && meta) {
+    if (!directive.has('selector') && decorator.import?.name && meta && !selector) {
         const decoratorName = decorator.import.name;
         // Get the class name without the decorator suffix if it exists
         const className = clazz.name.getText().replace(new RegExp(`${decoratorName}$`), '');
@@ -6726,15 +6726,15 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
                 .join('-')
                 .toLowerCase();
             // Create a string literal and set its parent to the decorator node
-            const selectorLiteral = ts__default["default"].factory.createStringLiteral(kebabCaseName);
+            const selectorLiteral = ts__default["default"].factory.createStringLiteral(`${kebabCaseName}, ${className}`);
             if (ts__default["default"].isObjectLiteralExpression(meta)) {
                 const selectorProp = ts__default["default"].factory.createPropertyAssignment(ts__default["default"].factory.createIdentifier("selector"), selectorLiteral);
                 ts__default["default"].factory.updateObjectLiteralExpression(meta, [
                     ...meta.properties,
                     selectorProp,
                 ]);
+                selector = `${kebabCaseName}, ${className}`;
             }
-            directive = checker.reflectObjectLiteral(meta);
         }
         else if (decoratorName === 'Directive') {
             // For directives, create attribute selector
@@ -6743,7 +6743,7 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
                 .replace(/Directive$/, '')
                 .replace(/Attr$/, '');
             // Create a string literal and set its parent to the decorator node
-            const selectorLiteral = ts__default["default"].factory.createStringLiteral(`[${baseName}]`);
+            const selectorLiteral = ts__default["default"].factory.createStringLiteral(`[${baseName}], [${className}]`);
             if (ts__default["default"].isObjectLiteralExpression(meta)) {
                 const selectorProp = ts__default["default"].factory.createPropertyAssignment(ts__default["default"].factory.createIdentifier("selector"), selectorLiteral);
                 ts__default["default"].factory.updateObjectLiteralExpression(meta, [
@@ -6751,10 +6751,10 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
                     selectorProp,
                 ]);
             }
-            directive = checker.reflectObjectLiteral(meta);
+            selector = `[${baseName}], [${className}]`;
         }
     }
-    if (directive.has('selector')) {
+    else if (directive.has('selector')) {
         const expr = directive.get('selector');
         const resolved = evaluator.evaluate(expr);
         assertLocalCompilationUnresolvedConst(compilationMode, resolved, null, 'Unresolved identifier found for @Component.selector field! Did you ' +
